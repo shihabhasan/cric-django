@@ -9,6 +9,9 @@ class Cricketer(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_runs(self):
+        return self.runsbyyear_set.all().order_by('year').distinct().values('year', 'run')
+
 
 class RunsByYear(models.Model):
     year = models.IntegerField()
